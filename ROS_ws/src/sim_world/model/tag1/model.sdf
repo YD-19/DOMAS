@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<model name="dock">
+  <static>true</static>
+  <link name="dock_link">
+
+  <visual name="dock">
+    <pose>0 0 0 0 0 0</pose>
+    <geometry>
+      <mesh><uri>model://tag1/meshes/wholeparkingblock.dae</uri><scale>1 1 1</scale></mesh>
+    </geometry>
+  </visual>
+
+  <collision name="dock">
+    <pose>0 0 0 0 0 0</pose>
+    <geometry>
+      <mesh><uri>model://tag1/meshes/wholeparkingblock.dae</uri><scale>1 1 1</scale></mesh>
+    </geometry>
+  </collision>
+
+  </link>
+</model>
+</sdf>

@@ -1,0 +1,23 @@
+<?xml version="1.0" ?>
+<sdf version="1.5">
+<model name="parking">
+  <static>true</static>
+  <link name="parking_link">
+
+  <visual name="parking">
+    <pose>0 0 0 0 0 0</pose>
+    <geometry>
+      <mesh><uri>model://meshes/wholeparkingblock.dae</uri><scale>1.2 1.2 1.2</scale></mesh>
+    </geometry>
+  </visual>
+
+  <collision name="parking">
+    <pose>0 0 0 0 0 0</pose>
+    <geometry>
+      <mesh><uri>model://meshes/wholeparkingblock.dae</uri><scale>1.2 1.2 1.2</scale></mesh>
+    </geometry>
+  </collision>
+
+  </link>
+</model>
+</sdf>

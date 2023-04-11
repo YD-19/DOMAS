@@ -1,0 +1,64 @@
+<launch>
+
+  <arg name="use_sim_time" default="true" />
+  <arg name="gui" default="true" />
+  <arg name="headless" default="false" />
+<!--   <arg name="world_name" default="$(find sim_world)/world/labdemowaypoint.world" /> -->
+
+
+  <!-- Launch Gazebo with the specified world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="debug" value="0" />
+    <arg name="gui" value="$(arg gui)" />
+    <arg name="use_sim_time" value="$(arg use_sim_time)" />
+    <arg name="headless" value="$(arg headless)" />
+<!--     <arg name="world_name" value="$(arg world_name)" /> -->
+  </include>
+
+	      
+  <arg name="model" default="$(env TURTLEBOT3_MODEL)" doc="model type [burger, waffle, waffle_pi]"/>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find turtlebot3_description)/urdf/turtlebot3_$(arg model).urdf.xacro" />
+  <!-- BEGIN ROBOT 1-->
+  <group ns="robot1">
+    <param name="tf_prefix" value="robot1_tf" />
+    <node pkg="tf" type="static_transform_publisher" name="world_frames_connection1" args="0 0 0 0 0 0 world robot1_tf/odom 100"/>
+    <include file="$(find consensus)/launch/one_turtle.launch" >
+      <arg name="init_pose" value="-x 1 -y 0 -z 0" />
+      <arg name="robot_name"  value="Robot1" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 2-->
+  <group ns="robot2">
+    <param name="tf_prefix" value="robot2_tf" />
+    <node pkg="tf" type="static_transform_publisher" name="world_frames_connection1" args="0 0 0 0 0 0 world robot2_tf/odom 100"/>
+    <include file="$(find consensus)/launch/one_turtle.launch" >
+      <arg name="init_pose" value="-x 3 -y 0 -z 0" />
+      <arg name="robot_name"  value="Robot2" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 3-->
+  <group ns="robot3">
+    <param name="tf_prefix" value="robot3_tf" />
+    <node pkg="tf" type="static_transform_publisher" name="world_frames_connection1" args="0 0 0 0 0 0 world robot3_tf/odom 100"/>
+    <include file="$(find consensus)/launch/one_turtle.launch" >
+      <arg name="init_pose" value="-x 2 -y 1 -z 0" />
+      <arg name="robot_name"  value="Robot3" />
+    </include>
+  </group>
+
+  <!-- BEGIN ROBOT 4-->
+  <group ns="robot4">
+    <param name="tf_prefix" value="robot4_tf" />
+    <node pkg="tf" type="static_transform_publisher" name="world_frames_connection1" args="0 0 0 0 0 0 world robot4_tf/odom 100"/>
+    <include file="$(find consensus)/launch/one_turtle.launch" >
+      <arg name="init_pose" value="-x 3 -y 3 -z 0" />
+      <arg name="robot_name"  value="Robot4" />
+    </include>
+  </group>
+  
+
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-d $(find consensus)/config/4turtle.rviz"/>
+  
+</launch>

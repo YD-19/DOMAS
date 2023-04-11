@@ -1,0 +1,6 @@
+ROS_ws/build/*
+ROS_ws/devel/*
+ROS_ws/src/turtlebot3*
+Dockerfile
+Makefile
+
